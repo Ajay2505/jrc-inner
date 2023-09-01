@@ -207,5 +207,14 @@ window.addEventListener("resize", (evt) => {
 });
 
 
-
+gsap.to(".scrubby_img", {
+    y: -100,
+    scrollTrigger: {
+        trigger: ".content_section .img_wrapper",
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 1,
+        // markers: true
+    }
+})
 

@@ -106,7 +106,7 @@ gsap.to(".main_section .absolute_block", {
     y: -300,
     scrollTrigger: {
         trigger: ".images_overlay",
-        start: "center 30%",
+        start: "center 70%",
         end: "bottom top",
         scrub: true,
         // markers: true
@@ -193,8 +193,8 @@ const main = () => {
             y: 0,
             rotate: 0,
             scrollTrigger: {
-                trigger: line.parentElement, 
-                once: false,           
+                trigger: line.parentElement,
+                toggleActions: "play complete play reverse",
             }
         });
     });    

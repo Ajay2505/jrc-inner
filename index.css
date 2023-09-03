@@ -66,6 +66,10 @@ img {
     width: 100vw;
 }
 
+.max-w-full {
+    max-width: 100%;
+}
+
 .w-full {
     width: 100%;
 }
@@ -94,12 +98,20 @@ img {
     height: 100vh;
 }
 
+.max-h-screen {
+    max-height: 100vh;
+}
+
 .h-130 {
     height: 130%;
 }
 
 .newyorkFont {
     font-family: var(--newyorkFont);
+}
+
+.montserratFont {
+    font-family: var(--montserrat);
 }
 
 .main_heading {
@@ -111,11 +123,19 @@ img {
 }
 
 .ter_heading {
+    font-size: clamp(30px, 3vw, 41px);
+}
+
+.small_heading {
     font-size: clamp(23px, 4vw, 30px) !important;
 }
 
 .sub_heading {
     font-size: 18px !important;
+}
+
+.text_xs {
+    font-size: 14px !important;
 }
 
 .main_spacer {
@@ -282,4 +302,79 @@ section.about_section {
     }
 }
 
+.chapter_one_section {
+    color: #333333;
+}
 
+.main_projects_section {
+    background: linear-gradient(218deg, #e3e3e3 0%, #e9f0ee 100%);
+}
+
+.main_projects_section .project_heading {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.main_projects_section .project_heading > div {
+    padding: 50px 100px 30px 100px;
+    overflow: hidden;
+}
+
+.main_projects_section .project_heading .img_wrapper {
+    position: absolute;
+    height: 100%;
+    opacity: .2;
+    max-width: 300px;
+    transform: translate(0%, -40%);
+}
+
+.main_projects_section .project_content {
+    color: #333333;
+}
+
+.main_projects_section .left_content {
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+}
+
+.main_projects_section .project_content .right_content {
+    padding: 0 50px;
+}
+
+.main_projects_section .project_content .right_content .point {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.main_projects_section .project_content .right_content .point.main {
+    background-color: #fff;
+    padding-right: 10px;
+}
+
+.main_projects_section .project_content .right_content .point.main .img_wrapper {
+    max-width: 400px;
+}
+
+.main_projects_section .project_content .right_content .points_wrapper .point {
+    padding-bottom: 150px;
+}
+
+.main_projects_section .project_content .right_content .points_wrapper .point h1 {
+    color: #586166;
+}
+
+.main_projects_section .project_content .right_content .points_wrapper .point h1.ter_heading {
+    opacity: .15;
+}
+
+.main_projects_section .project_content .right_content .points_wrapper .point p {
+    bottom: -7px;
+    left: 10px;
+    color: #586166;
+}
+
+.main_projects_section .project_content .right_content .points_wrapper .point .img_wrapper {
+    max-width: 350px;
+}

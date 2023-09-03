@@ -216,5 +216,96 @@ gsap.to(".scrubby_img", {
         scrub: 1,
         // markers: true
     }
-})
+});
 
+const headings = document.querySelectorAll(".project_heading > div");
+headings.forEach(heading => {
+    gsap.to(heading, {
+        width: "100px",
+        duration: 1,
+        borderRadius: "0 0 150px 150px",
+        padding: "10px 90px 30px 90px",
+        scrollTrigger: {
+            trigger: heading.parentElement,
+            start: "top top",
+            end: "bottom top",
+            scrub: 1,
+            // markers: true
+        }
+    });
+    
+    gsap.to(heading.querySelector(".img_wrapper"), {
+        y: "-10%",
+        opacity: ".1",
+        scrollTrigger: {
+            trigger: heading.parentElement,
+            start: "top top",
+            end: "bottom top",
+            scrub: 1,
+            // markers: true
+        }
+    });
+});
+
+const projectOne = document.querySelector(".project_1");
+const image = projectOne.querySelector(".left_content img");
+ScrollTrigger.create({
+    trigger: projectOne.querySelector(".point.main"),
+    start: "top top",
+    end: "bottom center",
+    onEnter: () => {
+      image.setAttribute("src", `/assets/images/2bhk/2bhk_master.jpg`);
+    },
+    onEnterBack: () => {
+        image.setAttribute("src", `/assets/images/2bhk/2bhk_master.jpg`);
+    },
+});
+
+const projectOnePoints = projectOne.querySelectorAll(".points_wrapper .point");
+
+projectOnePoints.forEach((point, index) => {
+  const trigger = point;
+  ScrollTrigger.create({
+    trigger: trigger,
+    start: "top center",
+    end: "center center",
+    onEnter: () => {
+      image.setAttribute("src", `/assets/images/2bhk/2bhk_${index + 1}.jpg`);
+    },
+    onEnterBack: () => {
+        image.setAttribute("src", `/assets/images/2bhk/2bhk_${index + 1}.jpg`);
+      },
+  });
+});
+
+const projectTwo = document.querySelector(".project_2");
+const imageTwo = projectTwo.querySelector(".left_content img");
+ScrollTrigger.create({
+    trigger: projectTwo.querySelector(".point.main"),
+    start: "top top",
+    end: "bottom center",
+    onEnter: () => {
+      imageTwo.setAttribute("src", `/assets/images/3bhk/3bhk_master.jpg`);
+    },
+    onEnterBack: () => {
+        imageTwo.setAttribute("src", `/assets/images/3bhk/3bhk_master.jpg`);
+    },
+});
+
+const projectTwoPoints = projectTwo.querySelectorAll(".points_wrapper .point");
+
+projectTwoPoints.forEach((point, index) => {
+  const trigger = point;
+
+  ScrollTrigger.create({
+    trigger: trigger,
+    start: "top center",
+    end: "center center",
+    onEnter: () => {
+      imageTwo.setAttribute("src", `/assets/images/3bhk/3bhk_${index + 1}.jpg`);
+    },
+    onEnterBack: () => {
+        imageTwo.setAttribute("src", `/assets/images/3bhk/3bhk_${index + 1}.jpg`);
+      },
+  });
+});

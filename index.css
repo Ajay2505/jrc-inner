@@ -1,10 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
 @font-face {
-  font-family: "NewYork";
-  src: url("/fonts/newyork/NewYork.woff2") format("woff2"), url("/fonts/newyork/NewYork.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
+    font-family: "NewYork";
+    src: url("/fonts/newyork/NewYork.woff2") format("woff2"), url("/fonts/newyork/NewYork.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
 
 :root {
@@ -48,7 +49,12 @@ body {
     font-family: var(--montserrat);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: var(--newyorkFont);
 }
 
@@ -87,7 +93,7 @@ img {
 }
 
 .h-fit {
-   height: fit-content;
+    height: fit-content;
 }
 
 .h-full {
@@ -142,6 +148,10 @@ img {
     padding-block: 150px !important;
 }
 
+.main_spacer_top {
+    padding-top: 150px !important;
+}
+
 .place-items-center {
     place-items: center;
 }
@@ -150,8 +160,49 @@ img {
     background-color: var(--bg_main);
 }
 
+/* Main */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    padding-top: 30px;
+}
+
+.header .nav_wrapper ul {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+}
+
+.header .nav_wrapper ul li a {
+    color: #000;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 5px 10px;
+    letter-spacing: 4.32px;
+}
+
+.header .nav_wrapper ul li a.active {
+    border-bottom: 2px solid #000;
+}
+
+.header .nav_wrapper ul li a.contact {
+    border: 2px solid #000;
+}
+
 .main_section {
     background-color: var(--bg_main);
+}
+
+.main_section .floating_text {
+    left: 80px;
+    top: 50%;
+    text-align: end;
+    line-height: 2;
+    transform: translateY(-50%);
 }
 
 .animated_lines {
@@ -193,7 +244,7 @@ img {
     max-height: 1100px;
 }
 
-.images_overlay .inner > div {
+.images_overlay .inner>div {
     margin-bottom: 2.7rem;
 }
 
@@ -223,10 +274,11 @@ section.about_section {
     z-index: 2;
     height: 2px;
     width: 100%;
-    background: rgba(232,232,215,0.35);
+    background: rgba(232, 232, 215, 0.35);
 }
 
-.linesDiv::before, .linesDiv::after {
+.linesDiv::before,
+.linesDiv::after {
     content: "";
     position: absolute;
     bottom: 0;
@@ -234,12 +286,12 @@ section.about_section {
     z-index: 2;
     height: 2px;
     right: 0;
-    background: rgba(232,232,215,0.15);
+    background: rgba(232, 232, 215, 0.15);
 }
 
 .linesDiv::after {
     width: 0px;
-    background: rgba(232,232,215,0.35);
+    background: rgba(232, 232, 215, 0.35);
     transition: width .4s ease-in-out;
 }
 
@@ -254,7 +306,7 @@ section.about_section {
     top: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.15);
+    background: rgba(0, 0, 0, 0.15);
     clip-path: inset(100% 0 0 0);
     transition: 0.35s ease-in 0s;
 }
@@ -276,26 +328,32 @@ section.about_section {
         transform: translateY(0);
         opacity: 1;
     }
+
     40% {
         transform: translateY(-60%);
         opacity: 0.3;
     }
+
     35% {
         transform: translateY(-60%);
         opacity: 0;
     }
+
     40% {
         opacity: 0;
         transform: translateY(100%);
     }
+
     43% {
         opacity: 0;
         transform: translateY(100%);
     }
+
     95% {
         transform: translateY(0);
         opacity: 1;
     }
+
     100% {
         transform: translateY(0);
         opacity: 1;
@@ -316,7 +374,7 @@ section.about_section {
     z-index: 2;
 }
 
-.main_projects_section .project_heading > div {
+.main_projects_section .project_heading>div {
     padding: 50px 100px 30px 100px;
     overflow: hidden;
 }
@@ -377,4 +435,126 @@ section.about_section {
 
 .main_projects_section .project_content .right_content .points_wrapper .point .img_wrapper {
     max-width: 350px;
+}
+
+.kitchen_section,
+.hscroll_section {
+    color: var(--main_color);
+}
+
+.kitchen_section .kitchen_items,
+.hscroll_section .items {
+    overflow: hidden;
+}
+
+.kitchen_section .kitchen_items .content_wrapper,
+.hscroll_section .items .content_wrapper {
+    padding-left: 80px;
+    gap: 0 50px;
+}
+
+.kitchen_section .kitchen_items .item,
+.hscroll_section .items .item {
+    width: 100%;
+    max-width: 350px;
+    flex-shrink: 0;
+}
+
+.kitchen_section .kitchen_items .item:nth-child(even),
+.hscroll_section .items .item:nth-child(even) {
+    transform: translateY(100px);
+}
+
+.kitchen_section .kitchen_items .item:last-child,
+.hscroll_section .items .item:last-child {
+    max-width: 450px;
+    padding-right: 100px;
+}
+
+
+.kitchen_section .kitchen_items .item .img_wrapper,
+.hscroll_section .items .item .img_wrapper {
+    max-width: 350px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.projects_section {
+    color: #333333;
+    overflow: hidden;
+}
+
+.projects_section .images_wrapper {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.projects_section .images_wrapper .img_wrapper {
+    max-width: 300px;
+    min-width: 300px;
+}
+
+.projects_section .content_wrapper {
+    opacity: 0;
+}
+
+
+footer {
+    background-color: #000;
+    padding-block: 100px 50px;
+}
+
+footer .top_logos .logo_wrapper {
+    margin-block: 30px;
+}
+
+footer .top_logos .logo_wrapper img {
+    -o-object-fit: contain;
+    object-fit: contain;
+    width: 150px;
+    height: 50px;
+    max-width: 100%;
+}
+
+footer .bottom_logos {
+    padding-top: 100px;
+}
+
+footer .bottom_logos .logo_wrapper {
+    margin-block: 30px;
+}
+
+footer .bottom_logos .logo_wrapper img {
+    -o-object-fit: contain;
+    object-fit: contain;
+    width: 80px;
+    height: 50px;
+    max-width: 100%;
+}
+
+footer .bottom_footer {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 100px;
+}
+
+footer .bottom_footer h2 {
+    font-size: 12px;
+    margin: 0;
+}
+
+footer .bottom_footer p {
+    font-size: 10px;
+    margin: 0;
+}
+
+footer .bottom_footer img {
+    filter: invert(1);
+}
+
+footer .bottom_footer .footerIcons {
+    display: flex;
+    gap: 3px;
 }

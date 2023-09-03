@@ -309,3 +309,132 @@ projectTwoPoints.forEach((point, index) => {
       },
   });
 });
+
+const kitchenItems = document.querySelectorAll(".kitchen_section .kitchen_items .item");
+
+kitchenItems.forEach((item, idx) => {
+    if (idx % 2 !== 0) {
+        gsap.to(item, {
+            y: 0,
+            scrollTrigger: {
+                trigger: document.querySelector(".kitchen_section"),
+                start: "top 20%",
+                end: "center 30%",
+                scrub: true,
+                // markers: true
+            }
+        });
+    }
+    gsap.to(item.querySelector(".img_wrapper"), {
+        borderRadius: 0,
+        scrollTrigger: {
+            trigger: document.querySelector(".kitchen_section"),
+            start: "top 20%",
+            end: "center 30%",
+            scrub: true,
+            // markers: true
+        }
+    });
+});
+
+const kitchen = document.querySelector(".kitchen_section .kitchen_items .content_wrapper");
+gsap.to(kitchen, {
+    x: () => -(kitchen.scrollWidth - window.innerWidth),
+    scrollTrigger: {
+        trigger: kitchen,
+        start: "top top",
+        scrub: true,
+        pin: true,
+        pinSpacer: false,
+        end: `+=${kitchen.scrollWidth - window.innerWidth}`,
+        // markers: true
+    }
+});
+
+const hScrollItems = document.querySelectorAll(".hscroll_section .items .item");
+
+hScrollItems.forEach((item, idx) => {
+    if (idx % 2 !== 0) {
+        gsap.to(item, {
+            y: 0,
+            scrollTrigger: {
+                trigger: document.querySelector(".hscroll_section"),
+                start: "top 20%",
+                end: "center 30%",
+                scrub: true,
+                // markers: true
+            }
+        });
+    }
+    gsap.to(item.querySelector(".img_wrapper"), {
+        borderRadius: 0,
+        scrollTrigger: {
+            trigger: document.querySelector(".hscroll_section"),
+            start: "top 20%",
+            end: "center 30%",
+            scrub: true,
+            // markers: true
+        }
+    });
+});
+
+const hScroll = document.querySelector(".hscroll_section .items .content_wrapper");
+gsap.to(hScroll, {
+    x: () => -(hScroll.scrollWidth - window.innerWidth),
+    scrollTrigger: {
+        trigger: hScroll,
+        start: "top top",
+        scrub: true,
+        pin: true,
+        pinSpacer: false,
+        end: `+=${hScroll.scrollWidth - window.innerWidth}`,
+        // markers: true
+    }
+});
+
+const projectLineImages = document.querySelectorAll(".projects_section .images_wrapper .hstack");
+projectLineImages.forEach(line => {
+    const images = line.querySelectorAll(".img_wrapper");
+    images.forEach((img, idx) => {
+        img.style.marginLeft = "-" + (idx * 35) + "px";
+        const mid = Math.round(images?.length/2);
+        let x = idx >  mid ? "200px" : "-200px";
+        x = idx === mid ? 0 : x;
+        gsap.to(img, {
+            scale: 0,
+            opacity: 0,
+            x,
+            // marginLeft: 0,
+            scrollTrigger: {
+                trigger: ".projects_section .images_wrapper",
+                start: "top center",
+                end: "bottom 40%",
+                scrub: true,
+                // markers: true
+            }
+        });
+    });
+});
+
+gsap.to(".projects_section .images_wrapper", {
+    y: 200,
+    scrollTrigger: {
+        trigger: ".projects_section .images_wrapper",
+        start: "40% bottom",
+        end: "center top",
+        scrub: true,
+        // markers: true
+    }
+});
+
+gsap.to(".projects_section .content_wrapper", {
+    opacity: 1,
+    scrollTrigger: {
+        trigger: ".projects_section .content_wrapper",
+        start: "top center",
+        end: "top 30%",
+        toggleActions: "play complete play reverse",
+        scrub: true,
+        // markers: true
+    }
+});

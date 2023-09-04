@@ -218,13 +218,13 @@ gsap.to(".scrubby_img", {
     }
 });
 
+// Main Projects Section
 const headings = document.querySelectorAll(".project_heading > div");
 headings.forEach(heading => {
     gsap.to(heading, {
-        width: "100px",
-        duration: 1,
+        width: "250px",
         borderRadius: "0 0 150px 150px",
-        padding: "10px 90px 30px 90px",
+        height: 120,
         scrollTrigger: {
             trigger: heading.parentElement,
             start: "top top",
@@ -234,9 +234,8 @@ headings.forEach(heading => {
         }
     });
     
-    gsap.to(heading.querySelector(".img_wrapper"), {
-        y: "-10%",
-        opacity: ".1",
+    gsap.to(heading.querySelector(".hide_wrapper"), {
+        opacity: 0,
         scrollTrigger: {
             trigger: heading.parentElement,
             start: "top top",
@@ -300,6 +299,7 @@ projectTwoPoints.forEach((point, index) => {
   ScrollTrigger.create({
     trigger: trigger,
     start: "top center",
+    // markers: true,
     end: "center center",
     onEnter: () => {
       imageTwo.setAttribute("src", `/assets/images/3bhk/3bhk_${index + 1}.jpg`);
@@ -310,6 +310,8 @@ projectTwoPoints.forEach((point, index) => {
   });
 });
 
+
+// Kitchen Section
 const kitchenItems = document.querySelectorAll(".kitchen_section .kitchen_items .item");
 
 kitchenItems.forEach((item, idx) => {
@@ -378,6 +380,8 @@ hScrollItems.forEach((item, idx) => {
     });
 });
 
+
+// Last Horizontal scroll section
 const hScroll = document.querySelector(".hscroll_section .items .content_wrapper");
 gsap.to(hScroll, {
     x: () => -(hScroll.scrollWidth - window.innerWidth),
@@ -392,6 +396,8 @@ gsap.to(hScroll, {
     }
 });
 
+
+// Projects Line Up section
 const projectLineImages = document.querySelectorAll(".projects_section .images_wrapper .hstack");
 projectLineImages.forEach(line => {
     const images = line.querySelectorAll(".img_wrapper");
@@ -431,10 +437,23 @@ gsap.to(".projects_section .content_wrapper", {
     opacity: 1,
     scrollTrigger: {
         trigger: ".projects_section .content_wrapper",
-        start: "top center",
-        end: "top 30%",
+        start: "top 60%",
+        end: "center 90%",
         toggleActions: "play complete play reverse",
-        scrub: true,
         // markers: true
     }
 });
+
+
+const bgImgChangers = document.querySelectorAll(".bg_img_section .linesDiv");
+bgImgChangers.forEach((changer, idx) => {
+    const bgImg = document.querySelector(".bg_img_itself");
+    changer.addEventListener("mouseenter", () => {
+        bgImg.style.display = "block";
+        bgImg.style.backgroundImage = `url(/assets/images/bg-images/jrc-6-2-${idx+1}-min.jpg)`;
+    });
+    changer.addEventListener("mouseleave", () => {
+        bgImg.style.display = "none";
+    });
+});
+

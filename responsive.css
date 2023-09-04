@@ -4,6 +4,9 @@
     .-mt-lg-20 {
         margin-top: -20px;
     }
+    .max-w-lg-half {
+        max-width: 50%;
+    }
 }
 
 @media only screen and (max-width: 1800px) {

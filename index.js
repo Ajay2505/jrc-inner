@@ -219,8 +219,11 @@ gsap.to(".scrubby_img", {
 });
 
 // Main Projects Section
+const projectSelector = document.querySelectorAll(".project_selector a");
+const gooey = document.querySelector(".project_selector .gooey");
 const headings = document.querySelectorAll(".project_heading > div");
-headings.forEach(heading => {
+
+headings.forEach((heading, idx) => {
     gsap.to(heading, {
         width: "250px",
         borderRadius: "0 0 150px 150px",
@@ -229,7 +232,9 @@ headings.forEach(heading => {
             trigger: heading.parentElement,
             start: "top top",
             end: "bottom top",
-            scrub: 1,
+            scrub: true,
+            onEnter: () => setPosition(projectSelector[idx]),
+            onLeaveBack: () => setPosition(projectSelector[0]),
             // markers: true
         }
     });
@@ -257,7 +262,14 @@ ScrollTrigger.create({
     },
     onEnterBack: () => {
         image.setAttribute("src", `/assets/images/2bhk/2bhk_master.jpg`);
+        document.querySelector(".project_selector").style.transform = "scaleY(0)";
     },
+    onLeave: () => {
+        document.querySelector(".project_selector").style.transform = "scaleY(1)";
+        setTimeout(() => {
+            setPosition(projectSelector[0]);
+        }, 500);
+    }
 });
 
 const projectOnePoints = projectOne.querySelectorAll(".points_wrapper .point");
@@ -457,3 +469,25 @@ bgImgChangers.forEach((changer, idx) => {
     });
 });
 
+function setPosition(element) {
+    let rect = element.getBoundingClientRect();
+    let parentRect = element.parentElement.getBoundingClientRect();
+
+    let relativeTop = rect.top - parentRect.top;
+    let relativeLeft = rect.left - parentRect.left;
+    gooey.style.width = rect.width + "px";
+    gooey.style.height = rect.height + "px";
+    gooey.style.top = relativeTop + "px";
+    gooey.style.left = relativeLeft + "px";
+}
+
+projectSelector.forEach((project, idx) => {
+    project.addEventListener("click", () => {
+        setPosition(project);
+        lenis.scrollTo(`#project_${idx + 1}`)
+    });
+});
+
+setPosition(projectSelector[0]);
+
+window.addEventListener("resize", setPosition(projectSelector[0]));

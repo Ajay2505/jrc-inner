@@ -113,99 +113,97 @@ gsap.to(".main_section .absolute_block", {
     }
 });
 
-const main = () => {
-
-    function getLineBreaks(node) {
-        // we only deal with TextNodes
-        if(!node || !node.parentNode || node.nodeType !== 3) {
-            return [];
-        }
-        // our Range object form which we'll get the characters positions
-        const range = document.createRange();
-        // here we'll store all our lines
-        const lines = [];
-        // begin at the first char
-        range.setStart(node, 0);
-        // initial position
-        let prevBottom = range.getBoundingClientRect().bottom;
-        let str = node.textContent;
-        let current = 1; // we already got index 0
-        let lastFound = 0;
-        let bottom = 0;
-        // iterate over all characters
-        while(current <= str.length) {
-          // move our cursor
-          range.setStart(node, current);
-          if(current < str.length -1)
-           range.setEnd(node, current+1);
-          bottom = range.getBoundingClientRect().bottom;
-          if(bottom > prevBottom) { // line break
-            lines.push(
-              str.substr(lastFound , current - lastFound) // text content
-            );
-            prevBottom = bottom;
-            lastFound = current;
-          }
-          current++;
-        }
-        // push the last line
-        lines.push(str.substr(lastFound));
-        return lines;
-    }
+// const main = () => {
+//     function getLineBreaks(node) {
+//         // we only deal with TextNodes
+//         if(!node || !node.parentNode || node.nodeType !== 3) {
+//             return [];
+//         }
+//         // our Range object form which we'll get the characters positions
+//         const range = document.createRange();
+//         // here we'll store all our lines
+//         const lines = [];
+//         // begin at the first char
+//         range.setStart(node, 0);
+//         // initial position
+//         let prevBottom = range.getBoundingClientRect().bottom;
+//         let str = node.textContent;
+//         let current = 1; // we already got index 0
+//         let lastFound = 0;
+//         let bottom = 0;
+//         // iterate over all characters
+//         while(current <= str.length) {
+//           // move our cursor
+//           range.setStart(node, current);
+//           if(current < str.length -1)
+//            range.setEnd(node, current+1);
+//           bottom = range.getBoundingClientRect().bottom;
+//           if(bottom > prevBottom) { // line break
+//             lines.push(
+//               str.substr(lastFound , current - lastFound) // text content
+//             );
+//             prevBottom = bottom;
+//             lastFound = current;
+//           }
+//           current++;
+//         }
+//         // push the last line
+//         lines.push(str.substr(lastFound));
+//         return lines;
+//     }
     
-    function linesSeperator(node, lines) {
-        node.innerHTML = "";
-        lines?.forEach(line => {
-            node.innerHTML += `<div class="animated_lines"><p>${line?.trim()}</p></div>`; 
-        });
-    }
+//     function linesSeperator(node, lines) {
+//         node.innerHTML = "";
+//         lines?.forEach(line => {
+//             node.innerHTML += `<div class="animated_lines"><p>${line?.trim()}</p></div>`; 
+//         });
+//     }
     
-    const texts = document.querySelectorAll(".text_animate");
-    texts.forEach(text => {
+//     const texts = document.querySelectorAll(".text_animate");
+//     texts.forEach(text => {
 
-    // Check if the main <p> element contains nested <p> elements
-    let combinedText = '';
-    if (text.querySelectorAll('p').length > 0) {
-    // Select all the inner <p> elements within the main <p> element
-    let innerParagraphs = text.querySelectorAll('p');
+//     // Check if the main <p> element contains nested <p> elements
+//     let combinedText = '';
+//     if (text.querySelectorAll('p').length > 0) {
+//     // Select all the inner <p> elements within the main <p> element
+//     let innerParagraphs = text.querySelectorAll('p');
 
-    // Initialize an empty string to store the combined text
+//     // Initialize an empty string to store the combined text
 
-    // Iterate through the inner <p> elements and concatenate their text content
-    innerParagraphs.forEach(function(paragraph) {
-        combinedText += paragraph.innerText + ' '; // Add a space between paragraphs
-    });
+//     // Iterate through the inner <p> elements and concatenate their text content
+//     innerParagraphs.forEach(function(paragraph) {
+//         combinedText += paragraph.innerText + ' '; // Add a space between paragraphs
+//     });
 
-    // Remove extra spaces and trim the resulting text
-     combinedText = combinedText.trim();
-    } else {
-    // If there are no nested <p> elements, simply use the text content of the main <p> element
-        combinedText = text.innerText.trim();
-    }
-        text.innerHTML = combinedText;
-        const lines = getLineBreaks(text.childNodes[0]);
-        linesSeperator(text, lines);  
-    });
+//     // Remove extra spaces and trim the resulting text
+//      combinedText = combinedText.trim();
+//     } else {
+//     // If there are no nested <p> elements, simply use the text content of the main <p> element
+//         combinedText = text.innerText.trim();
+//     }
+//         text.innerHTML = combinedText;
+//         const lines = getLineBreaks(text.childNodes[0]);
+//         linesSeperator(text, lines);  
+//     });
     
-    const linesItself = document.querySelectorAll(".animated_lines p");
-    linesItself.forEach(line => {        
-        gsap.to(line, {
-            y: 0,
-            rotate: 0,
-            scrollTrigger: {
-                trigger: line.parentElement,
-                toggleActions: "play complete play reverse",
-            }
-        });
-    });    
-}
+//     const linesItself = document.querySelectorAll(".animated_lines p");
+//     linesItself.forEach(line => {        
+//         gsap.to(line, {
+//             y: 0,
+//             rotate: 0,
+//             scrollTrigger: {
+//                 trigger: line.parentElement,
+//                 toggleActions: "play complete play reverse",
+//             }
+//         });
+//     });    
+// }
 
-main();
+// main();
 
-window.addEventListener("resize", (evt) => {
-    main();
-});
-
+// window.addEventListener("resize", (evt) => {
+//     main();
+// });
 
 gsap.to(".scrubby_img", {
     y: -100,
@@ -360,7 +358,7 @@ gsap.to(kitchen, {
         scrub: true,
         pin: true,
         pinSpacer: false,
-        end: `+=${kitchen.scrollWidth - window.innerWidth}`,
+        end: () => `+=${kitchen.scrollWidth - window.innerWidth}`,
         // markers: true
     }
 });
@@ -403,7 +401,7 @@ gsap.to(hScroll, {
         scrub: true,
         pin: true,
         pinSpacer: false,
-        end: `+=${hScroll.scrollWidth - window.innerWidth}`,
+        end: () => `+=${hScroll.scrollWidth - window.innerWidth}`,
         // markers: true
     }
 });
@@ -488,6 +486,6 @@ projectSelector.forEach((project, idx) => {
     });
 });
 
-setPosition(projectSelector[0]);
+// setPosition(projectSelector[0]);
 
-window.addEventListener("resize", setPosition(projectSelector[0]));
+window.addEventListener("resize", gsap.update);

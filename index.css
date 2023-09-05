@@ -240,6 +240,7 @@ img {
     min-width: 700px;
     max-height: 500px;
     width: 100%;
+    overflow: hidden;
 }
 
 .images_overlay .img_wrapper img {

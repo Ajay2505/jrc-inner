@@ -230,7 +230,7 @@ headings.forEach((heading, idx) => {
             trigger: heading.parentElement,
             start: "top top",
             end: "bottom top",
-            scrub: true,
+            scrub: 1,
             onEnter: () => setPosition(projectSelector[idx]),
             onLeaveBack: () => setPosition(projectSelector[0]),
             // markers: true
@@ -486,6 +486,20 @@ projectSelector.forEach((project, idx) => {
     });
 });
 
-// setPosition(projectSelector[0]);
+setPosition(projectSelector[0]);
+
+document.querySelectorAll("section.bg_bright")?.forEach(section => {
+    gsap.to(".header", {
+        scrollTrigger: {
+            trigger: section,
+            start: "top top",
+            end: "bottom top",
+            toggleClass: {
+                targets: ".header",
+                className: "dark",
+            },
+        }
+    });
+});
 
 window.addEventListener("resize", gsap.update);

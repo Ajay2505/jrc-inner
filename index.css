@@ -190,7 +190,7 @@ img {
 }
 
 .header .nav_wrapper ul li a {
-    color: #000;
+    color: var(--main_color);
     text-decoration: none;
     font-size: 18px;
     font-weight: 500;
@@ -198,11 +198,23 @@ img {
     letter-spacing: 4.32px;
 }
 
+.header.dark .nav_wrapper ul li a {
+    color: #000;
+}
+
 .header .nav_wrapper ul li a.active {
+    border-bottom: 2px solid var(--main_color);
+}
+
+.header.dark .nav_wrapper ul li a.active {
     border-bottom: 2px solid #000;
 }
 
 .header .nav_wrapper ul li a.contact {
+    border: 2px solid var(--main_color);
+}
+
+.header.dark .nav_wrapper ul li a.contact {
     border: 2px solid #000;
 }
 

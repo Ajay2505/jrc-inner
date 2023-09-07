@@ -47,6 +47,11 @@ html.lenis {
     color: var(--bg_main);
 }
 
+.bg_bright *::selection {
+    background-color: #333333;
+    color: var(--main_color);
+}
+
 body {
     color: #333333;
     font-family: var(--montserrat);
@@ -234,6 +239,25 @@ img {
     border: 2px solid #000;
 }
 
+.main_section .logo_wrapper {
+    max-width: 130px;
+}
+
+.main_section .images_overlay .inner {
+    transform: translateY(-750px) rotate(15deg);
+    z-index: 1;
+    max-height: 1100px;
+}
+
+.main_section .images_overlay .inner .first_row,
+.main_section .images_overlay .inner .third_row {
+    transform: translateX(-400px);
+}
+
+.main_section .images_overlay .inner .second_row {
+    transform: translateX(100px);
+}
+
 .main_section .floating_text {
     left: 80px;
     top: 50%;
@@ -281,12 +305,6 @@ img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
-
-.images_overlay .inner {
-    transform: rotate(15deg);
-    z-index: 1;
-    max-height: 1100px;
 }
 
 .images_overlay .inner>div {
@@ -581,43 +599,50 @@ section.about_section {
     max-width: 350px;
 }
 
-.kitchen_section,
-.hscroll_section {
-    color: var(--main_color);
-}
-
 .kitchen_section .kitchen_items,
-.hscroll_section .items {
+.hscroll_section .items,
+.balcony_section .items,
+.community_section .items {
     overflow: hidden;
 }
 
 .kitchen_section .kitchen_items .content_wrapper,
-.hscroll_section .items .content_wrapper {
+.hscroll_section .items .content_wrapper,
+.balcony_section .items .content_wrapper,
+.community_section .items .content_wrapper {
     padding-left: 80px;
     gap: 0 50px;
 }
 
 .kitchen_section .kitchen_items .item,
-.hscroll_section .items .item {
+.hscroll_section .items .item,
+.balcony_section .items .item,
+.community_section .items .item {
     width: 100%;
     max-width: 350px;
     flex-shrink: 0;
 }
 
 .kitchen_section .kitchen_items .item:nth-child(even),
-.hscroll_section .items .item:nth-child(even) {
+.hscroll_section .items .item:nth-child(even),
+.balcony_section .items .item:nth-child(even),
+.community_section .items .item:nth-child(even) {
     transform: translateY(100px);
 }
 
 .kitchen_section .kitchen_items .item:last-child,
-.hscroll_section .items .item:last-child {
+.hscroll_section .items .item:last-child,
+.balcony_section .items .item:last-child,
+.community_section .items .item:last-child {
     max-width: 450px;
     padding-right: 100px;
 }
 
 
 .kitchen_section .kitchen_items .item .img_wrapper,
-.hscroll_section .items .item .img_wrapper {
+.hscroll_section .items .item .img_wrapper,
+.balcony_section .items .item .img_wrapper,
+.community_section .items .item .img_wrapper {
     max-width: 350px;
     border-radius: 50%;
     overflow: hidden;

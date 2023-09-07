@@ -7,10 +7,11 @@ const lenis = new Lenis({
 lenis.on('scroll', ScrollTrigger.update)
 
 gsap.ticker.add((time)=>{
-  lenis.raf(time * 1000);
+lenis.raf(time * 1000);
 })
 
 gsap.ticker.lagSmoothing(0);
+
 
 gsap.to(".main_heading", {
     y: 950,
@@ -24,21 +25,21 @@ gsap.to(".main_heading", {
     }
 });
 
-gsap.to(".first_row", {
-    x: -400
-});
+// gsap.to(".first_row", {
+//     x: -400
+// });
 
-gsap.to(".second_row", {
-    x: 100
-});
+// gsap.to(".second_row", {
+//     x: 100
+// });
 
-gsap.to(".third_row", {
-    x: -400
-});
+// gsap.to(".third_row", {
+//     x: -400
+// });
 
-gsap.to(".images_overlay .inner", {
-    y: -750
-});
+// gsap.to(".images_overlay .inner", {
+//     y: -750
+// });
 
 gsap.to(".images_overlay", {
     width: "100%",
@@ -291,6 +292,19 @@ projectOnePoints.forEach((point, index) => {
 const projectTwo = document.querySelector(".project_2");
 const imageTwo = projectTwo.querySelector(".left_content img");
 ScrollTrigger.create({
+    trigger: projectTwo,
+    start: "top top",
+    end: "bottom bottom",
+    onLeave: () => document.querySelector(".project_selector").style.transform = "scaleY(0)",
+    onEnterBack: () => {
+        document.querySelector(".project_selector").style.transform = "scaleY(1)";
+        setTimeout(() => {
+            setPosition(projectSelector[1]);
+        }, 500);
+    },
+    // markers: true,
+});
+ScrollTrigger.create({
     trigger: projectTwo.querySelector(".point.main"),
     start: "top top",
     end: "bottom center",
@@ -302,24 +316,54 @@ ScrollTrigger.create({
     },
 });
 
+
+
+// const projectTwoPoints = projectTwo.querySelectorAll(".points_wrapper .point");
+// projectTwoPoints.forEach((point, index) => {
+//   const trigger = point;
+
+//   ScrollTrigger.create({
+//     trigger: trigger,
+//     start: "top center",
+//     // markers: true,
+//     end: "center center",
+//     onEnter: () => {
+//       imageTwo.setAttribute("src", `/assets/images/3bhk/3bhk_${index + 1}.jpg`);
+//     },
+//     onEnterBack: () => {
+//         imageTwo.setAttribute("src", `/assets/images/3bhk/3bhk_${index + 1}.jpg`);
+//       },
+//   });
+// });
+
 const projectTwoPoints = projectTwo.querySelectorAll(".points_wrapper .point");
 
-projectTwoPoints.forEach((point, index) => {
-  const trigger = point;
+function isElementInViewport(element) {
+  const rect = element.getBoundingClientRect();
+  return (
+    rect.top >= 0 &&
+    rect.left >= 0 &&
+    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+  );
+}
 
-  ScrollTrigger.create({
-    trigger: trigger,
-    start: "top center",
-    // markers: true,
-    end: "center center",
-    onEnter: () => {
-      imageTwo.setAttribute("src", `/assets/images/3bhk/3bhk_${index + 1}.jpg`);
-    },
-    onEnterBack: () => {
-        imageTwo.setAttribute("src", `/assets/images/3bhk/3bhk_${index + 1}.jpg`);
-      },
+function updateImageSrc(index) {
+  imageTwo.setAttribute("src", `/assets/images/3bhk/3bhk_${index + 1}.jpg`);
+}
+
+function handleScroll() {
+  projectTwoPoints.forEach((point, index) => {
+    if (isElementInViewport(point)) {
+      updateImageSrc(index);
+    }
   });
-});
+}
+// Listen for the scroll event
+window.addEventListener("scroll", handleScroll);
+// Initial check for elements in view
+handleScroll();
+
 
 
 // Kitchen Section
@@ -364,8 +408,9 @@ gsap.to(kitchen, {
     }
 });
 
-const hScrollItems = document.querySelectorAll(".hscroll_section .items .item");
 
+// Last Horizontal scroll section
+const hScrollItems = document.querySelectorAll(".hscroll_section .items .item");
 hScrollItems.forEach((item, idx) => {
     if (idx % 2 !== 0) {
         gsap.to(item, {
@@ -391,8 +436,6 @@ hScrollItems.forEach((item, idx) => {
     });
 });
 
-
-// Last Horizontal scroll section
 const hScroll = document.querySelector(".hscroll_section .items .content_wrapper");
 gsap.to(hScroll, {
     x: () => -(hScroll.scrollWidth - window.innerWidth),
@@ -403,6 +446,90 @@ gsap.to(hScroll, {
         pin: true,
         pinSpacer: false,
         end: () => `+=${hScroll.scrollWidth - window.innerWidth}`,
+        // markers: true
+    }
+});
+
+
+// Balcony Horizontal scroll section
+const balconyScroll = document.querySelectorAll(".balcony_section .items .item");
+balconyScroll.forEach((item, idx) => {
+    if (idx % 2 !== 0) {
+        gsap.to(item, {
+            y: 0,
+            scrollTrigger: {
+                trigger: document.querySelector(".balcony_section"),
+                start: "top 20%",
+                end: "center 30%",
+                scrub: true,
+                // markers: true
+            }
+        });
+    }
+    gsap.to(item.querySelector(".img_wrapper"), {
+        borderRadius: 0,
+        scrollTrigger: {
+            trigger: document.querySelector(".balcony_section"),
+            start: "top 20%",
+            end: "center 30%",
+            scrub: true,
+            // markers: true
+        }
+    });
+});
+
+const balcony = document.querySelector(".balcony_section .items .content_wrapper");
+gsap.to(balcony, {
+    x: () => -(balcony.scrollWidth - window.innerWidth),
+    scrollTrigger: {
+        trigger: balcony,
+        start: "top top",
+        scrub: true,
+        pin: true,
+        pinSpacer: false,
+        end: () => `+=${balcony.scrollWidth - window.innerWidth}`,
+        // markers: true
+    }
+});
+
+
+// Community Horizontal scroll section
+const communityScroll = document.querySelectorAll(".community_section .items .item");
+communityScroll.forEach((item, idx) => {
+    if (idx % 2 !== 0) {
+        gsap.to(item, {
+            y: 0,
+            scrollTrigger: {
+                trigger: document.querySelector(".community_section"),
+                start: "top 20%",
+                end: "center 30%",
+                scrub: true,
+                // markers: true
+            }
+        });
+    }
+    gsap.to(item.querySelector(".img_wrapper"), {
+        borderRadius: 0,
+        scrollTrigger: {
+            trigger: document.querySelector(".community_section"),
+            start: "top 20%",
+            end: "center 30%",
+            scrub: true,
+            // markers: true
+        }
+    });
+});
+
+const community = document.querySelector(".community_section .items .content_wrapper");
+gsap.to(community, {
+    x: () => -(community.scrollWidth - window.innerWidth),
+    scrollTrigger: {
+        trigger: community,
+        start: "top top",
+        scrub: true,
+        pin: true,
+        pinSpacer: false,
+        end: () => `+=${community.scrollWidth - window.innerWidth}`,
         // markers: true
     }
 });
@@ -503,33 +630,36 @@ document.querySelectorAll("section.bg_bright")?.forEach(section => {
     });
 });
 
-window.addEventListener("resize", gsap.update);
+// window.addEventListener("resize", gsap.update);
 
-let isScrolling = false;
-let scrollingTimeout;
+// let isScrolling = false;
+// let scrollingTimeout;
 
-window.addEventListener("wheel", evt => {
-    const header = document.querySelector(".header");
-    header.classList.add("hide");
-    // if (evt.deltaY > 0) {        
-    // }
-    // if (evt.deltaY < 0) {        
-    //     header.classList.remove("hide");
-    // }
-    if (!isScrolling) {
-        isScrolling = true;
-    }
+// window.addEventListener("wheel", evt => {
+//     const header = document.querySelector(".header");
+//     header.classList.add("hide");
+//     // if (evt.deltaY > 0) {        
+//     // }
+//     // if (evt.deltaY < 0) {        
+//     //     header.classList.remove("hide");
+//     // }
+//     if (!isScrolling) {
+//         isScrolling = true;
+//     }
 
-    clearTimeout(scrollingTimeout);
+//     clearTimeout(scrollingTimeout);
 
-    scrollingTimeout = setTimeout(handleScrollStop, 450);
-});
+//     scrollingTimeout = setTimeout(handleScrollStop, 450);
+// });
 
 
-// Function to handle the scroll stop event
-function handleScrollStop() {
-    isScrolling = false;
-    const header = document.querySelector(".header");
-    header.classList.remove("hide");
-}
+// // Function to handle the scroll stop event
+// function handleScrollStop() {
+//     isScrolling = false;
+//     const header = document.querySelector(".header");
+//     header.classList.remove("hide");
+// }
 
+
+
+// ScrollTrigger.refresh();

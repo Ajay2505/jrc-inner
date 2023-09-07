@@ -265,15 +265,22 @@ img {
 }
 
 .images_overlay .img_wrapper {
-    min-width: 700px;
+    max-width: 700px;
     max-height: 500px;
     width: 100%;
+    height: 100%;
     overflow: hidden;
+}
+
+.images_overlay .inner .hstack > div {
+    height: 100%;
+    flex-shrink: 0;
 }
 
 .images_overlay .img_wrapper img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
 }
 
 .images_overlay .inner {
@@ -645,9 +652,9 @@ section.about_section {
     height: 100%;
 }
 
-.bg_img_section{
+.bg_img_section, .projects_section{
     color: var(--main_color);
-    background: linear-gradient(218deg, #323332 0%, #3d3e3e 100%);
+    background-color: #323332;
 }
 
 .bg_img_section .linesDiv:hover a {

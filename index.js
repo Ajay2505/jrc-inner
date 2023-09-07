@@ -239,6 +239,7 @@ headings.forEach((heading, idx) => {
     
     gsap.to(heading.querySelector(".hide_wrapper"), {
         opacity: 0,
+        marginTop: -20,
         scrollTrigger: {
             trigger: heading.parentElement,
             start: "top top",

@@ -10,6 +10,9 @@
 
 :root {
     --bg_main: #5e6563;
+    /* --bg-sec: #C89A36; */
+    --bg-sec: #e9f0ee;
+    --bg-ter: #C89A36;
     --main_color: #E8E8D7;
     --montserrat: "Montserrat", sans-serif;
     --newyorkFont: "NewYork", sans-serif;
@@ -173,6 +176,10 @@ img {
     color: var(--main_color);
 }
 
+.bg_sec {
+    background-color: var(--bg-sec);
+}
+
 /* Main */
 .header {
     position: fixed;
@@ -183,7 +190,7 @@ img {
     padding-top: 30px;
     transform-origin: top;
     /* background-color: var(--bg_main); */
-    transition: opacity .4s ease-in-out, transform .4s ease-in-out;
+    transition: opacity .2s ease-in-out, transform .2s ease-in-out;
 }
 
 .header.hide {
@@ -459,11 +466,6 @@ section.about_section {
     color: #333333;
 }
 
-.main_projects_section, .chapter_three_section {
-    background-color: #e9f0ee;
-    /* background: linear-gradient(218deg, #e3e3e3 0%, #e9f0ee 100%); */
-}
-
 .main_projects_section .project_selector {
     position: sticky;
     top: 100px;
@@ -629,8 +631,51 @@ section.about_section {
     transition: opacity .3s ease-in-out, transform .4s ease-in-out;
 }
 
-.key_list_section {
-    background: linear-gradient(225deg, #e2e5e2 0%, #d1d9d9 100%);
+.bg_img_itself {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-repeat: no-repeat;
+    filter: blur(20px);
+    background: rgba(0, 0, 0, 0.65);
+    background-blend-mode: overlay;
+    pointer-events: none;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.bg_img_section{
+    color: var(--main_color);
+    background: linear-gradient(218deg, #323332 0%, #3d3e3e 100%);
+}
+
+.bg_img_section .linesDiv:hover a {
+    padding-left: 0;
+}
+
+.bg_img_section .linesDiv a::before {
+    background: none;
+}
+
+.bg_img_section .linesDiv a p {
+    animation: none;
+}
+
+.bg_img_section .linesDiv .content .hstack > p {
+    transition: opacity .2s ease-in-out;
+}
+
+.bg_img_section .linesDiv:hover .content .hstack > p {
+    opacity: 0;
+}
+
+.bg_img_section .linesDiv .content .hstack > div {
+    transition: transform .2s ease-in-out;
+}
+
+.bg_img_section .linesDiv:hover .content .hstack > div {
+    transform: translateX(-30px);
 }
 
 footer {
@@ -691,51 +736,4 @@ footer .bottom_footer img {
 footer .bottom_footer .footerIcons {
     display: flex;
     gap: 3px;
-}
-
-.bg_img_itself {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background-repeat: no-repeat;
-    filter: blur(20px);
-    background: rgba(0, 0, 0, 0.65);
-    background-blend-mode: overlay;
-    pointer-events: none;
-    background-size: cover;
-    width: 100%;
-    height: 100%;
-}
-
-.bg_img_section{
-    color: var(--main_color);
-    background: linear-gradient(218deg, #323332 0%, #3d3e3e 100%);
-}
-
-.bg_img_section .linesDiv:hover a {
-    padding-left: 0;
-}
-
-.bg_img_section .linesDiv a::before {
-    background: none;
-}
-
-.bg_img_section .linesDiv a p {
-    animation: none;
-}
-
-.bg_img_section .linesDiv .content .hstack > p {
-    transition: opacity .2s ease-in-out;
-}
-
-.bg_img_section .linesDiv:hover .content .hstack > p {
-    opacity: 0;
-}
-
-.bg_img_section .linesDiv .content .hstack > div {
-    transition: transform .2s ease-in-out;
-}
-
-.bg_img_section .linesDiv:hover .content .hstack > div {
-    transform: translateX(-30px);
 }

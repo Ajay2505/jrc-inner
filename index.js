@@ -223,9 +223,9 @@ const headings = document.querySelectorAll(".project_heading > div");
 
 headings.forEach((heading, idx) => {
     gsap.to(heading, {
-        width: "250px",
+        width: "200px",
         borderRadius: "0 0 150px 150px",
-        height: 120,
+        height: 100,
         scrollTrigger: {
             trigger: heading.parentElement,
             start: "top top",
@@ -517,13 +517,10 @@ window.addEventListener("wheel", evt => {
     // }
     if (!isScrolling) {
         isScrolling = true;
-        // Add your code to run when scrolling starts here
     }
 
-    // Clear the previous timeout if it exists
     clearTimeout(scrollingTimeout);
 
-    // Set a new timeout to detect scroll stop (e.g., 200 milliseconds)
     scrollingTimeout = setTimeout(handleScrollStop, 450);
 });
 

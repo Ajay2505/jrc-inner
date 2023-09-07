@@ -179,8 +179,17 @@ img {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 10;
+    z-index: 100;
     padding-top: 30px;
+    transform-origin: top;
+    /* background-color: var(--bg_main); */
+    transition: opacity .4s ease-in-out, transform .4s ease-in-out;
+}
+
+.header.hide {
+    opacity: 0;
+    transform: scaleY(0);
+    transition: opacity .3s ease-in-out, transform .3s ease-in-out;
 }
 
 .header .nav_wrapper ul {
@@ -450,8 +459,9 @@ section.about_section {
     color: #333333;
 }
 
-.main_projects_section {
-    background: linear-gradient(218deg, #e3e3e3 0%, #e9f0ee 100%);
+.main_projects_section, .chapter_three_section {
+    background-color: #e9f0ee;
+    /* background: linear-gradient(218deg, #e3e3e3 0%, #e9f0ee 100%); */
 }
 
 .main_projects_section .project_selector {

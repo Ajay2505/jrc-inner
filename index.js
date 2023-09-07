@@ -503,3 +503,35 @@ document.querySelectorAll("section.bg_bright")?.forEach(section => {
 });
 
 window.addEventListener("resize", gsap.update);
+
+let isScrolling = false;
+let scrollingTimeout;
+
+window.addEventListener("wheel", evt => {
+    const header = document.querySelector(".header");
+    header.classList.add("hide");
+    // if (evt.deltaY > 0) {        
+    // }
+    // if (evt.deltaY < 0) {        
+    //     header.classList.remove("hide");
+    // }
+    if (!isScrolling) {
+        isScrolling = true;
+        // Add your code to run when scrolling starts here
+    }
+
+    // Clear the previous timeout if it exists
+    clearTimeout(scrollingTimeout);
+
+    // Set a new timeout to detect scroll stop (e.g., 200 milliseconds)
+    scrollingTimeout = setTimeout(handleScrollStop, 450);
+});
+
+
+// Function to handle the scroll stop event
+function handleScrollStop() {
+    isScrolling = false;
+    const header = document.querySelector(".header");
+    header.classList.remove("hide");
+}
+

@@ -662,4 +662,15 @@ document.querySelectorAll("section.bg_bright")?.forEach(section => {
 
 
 
-// ScrollTrigger.refresh();
+
+// lenis.scrollTo("#first_hs");
+// setTimeout(() => {
+//     lenis.scrollTo("#main");
+// }, 200);
+
+// setTimeout(() => {
+//     // window.location.reload()
+// }, 300);
+
+
+// // ScrollTrigger.refresh();

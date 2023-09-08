@@ -1,4 +1,5 @@
 gsap.registerPlugin(ScrollTrigger);
+
 const lenis = new Lenis({
     duration: 2.3,
     smoothTouch: true
@@ -10,8 +11,16 @@ gsap.ticker.add((time)=>{
 lenis.raf(time * 1000);
 })
 
-gsap.ticker.lagSmoothing(0);
+$("#phone").intlTelInput({
+    initialCountry: "in"
+});
 
+gsap.ticker.lagSmoothing(0);
+ScrollTrigger.config(
+    {
+        autoRefreshEvents: "load",
+    }
+);
 
 gsap.to(".main_heading", {
     y: 950,
@@ -24,6 +33,27 @@ gsap.to(".main_heading", {
         // markers: true
     }
 });
+
+document.querySelector(".fixed_enq").addEventListener("click", () => {
+    document.querySelector(".enquire_modal").classList.add("active");
+    lenis.stop();
+});
+
+document.querySelector(".enquire_modal").addEventListener("click", closeEnqModal);
+
+document.querySelector(".enquire_modal .modal_content").addEventListener("click", (evt) => {
+    evt.stopPropagation();
+    evt.target.querySelector(".country-list").classList.add("hide");
+});
+
+document.querySelector(".intl-tel-input.allow-dropdown").addEventListener("click", (evt) => evt.stopPropagation());
+
+document.querySelector(".enquire_modal .modal_content a.close").addEventListener("click", closeEnqModal);
+
+function closeEnqModal() {
+    document.querySelector(".enquire_modal").classList.remove("active");
+    lenis.start();
+}
 
 // gsap.to(".first_row", {
 //     x: -400
@@ -316,8 +346,6 @@ ScrollTrigger.create({
     },
 });
 
-
-
 // const projectTwoPoints = projectTwo.querySelectorAll(".points_wrapper .point");
 // projectTwoPoints.forEach((point, index) => {
 //   const trigger = point;
@@ -452,90 +480,92 @@ gsap.to(hScroll, {
 
 
 // Balcony Horizontal scroll section
-const balconyScroll = document.querySelectorAll(".balcony_section .items .item");
-balconyScroll.forEach((item, idx) => {
-    if (idx % 2 !== 0) {
-        gsap.to(item, {
-            y: 0,
-            scrollTrigger: {
-                trigger: document.querySelector(".balcony_section"),
-                start: "top 20%",
-                end: "center 30%",
-                scrub: true,
-                // markers: true
-            }
-        });
-    }
-    gsap.to(item.querySelector(".img_wrapper"), {
-        borderRadius: 0,
-        scrollTrigger: {
-            trigger: document.querySelector(".balcony_section"),
-            start: "top 20%",
-            end: "center 30%",
-            scrub: true,
-            // markers: true
-        }
-    });
-});
+// const balconyScroll = document.querySelectorAll(".balcony_section .items .item");
+// balconyScroll.forEach((item, idx) => {
+//     if (idx % 2 !== 0) {
+//         gsap.to(item, {
+//             y: 0,
+//             scrollTrigger: {
+//                 trigger: document.querySelector(".balcony_section"),
+//                 start: "top 20%",
+//                 end: "center 30%",
+//                 scrub: true,
+//                 // markers: true
+//             }
+//         });
+//     }
+//     gsap.to(item.querySelector(".img_wrapper"), {
+//         borderRadius: 0,
+//         scrollTrigger: {
+//             trigger: document.querySelector(".balcony_section"),
+//             start: "top 20%",
+//             end: "center 30%",
+//             scrub: true,
+//             // markers: true
+//         }
+//     });
+// });
 
-const balcony = document.querySelector(".balcony_section .items .content_wrapper");
-gsap.to(balcony, {
-    x: () => -(balcony.scrollWidth - window.innerWidth),
-    scrollTrigger: {
-        trigger: balcony,
-        start: "top top",
-        scrub: true,
-        pin: true,
-        pinSpacer: false,
-        end: () => `+=${balcony.scrollWidth - window.innerWidth}`,
-        // markers: true
-    }
-});
+// const balcony = document.querySelector(".balcony_section .items .content_wrapper");
+// gsap.to(balcony, {
+//     x: () => -(balcony.scrollWidth - window.innerWidth),
+//     scrollTrigger: {
+//         trigger: balcony,
+//         start: "top top",
+//         scrub: true,
+//         pin: true,
+//         pinSpacer: false,
+//         end: () => `+=${balcony.scrollWidth - window.innerWidth}`,
+//         // markers: true
+//     }
+// });
 
 
 // Community Horizontal scroll section
-const communityScroll = document.querySelectorAll(".community_section .items .item");
-communityScroll.forEach((item, idx) => {
-    if (idx % 2 !== 0) {
-        gsap.to(item, {
-            y: 0,
-            scrollTrigger: {
-                trigger: document.querySelector(".community_section"),
-                start: "top 20%",
-                end: "center 30%",
-                scrub: true,
-                // markers: true
-            }
-        });
-    }
-    gsap.to(item.querySelector(".img_wrapper"), {
-        borderRadius: 0,
-        scrollTrigger: {
-            trigger: document.querySelector(".community_section"),
-            start: "top 20%",
-            end: "center 30%",
-            scrub: true,
-            // markers: true
-        }
-    });
-});
+// const communityScroll = document.querySelectorAll(".community_section .items .item");
+// communityScroll.forEach((item, idx) => {
+//     if (idx % 2 !== 0) {
+//         gsap.to(item, {
+//             y: 0,
+//             scrollTrigger: {
+//                 trigger: document.querySelector(".community_section"),
+//                 start: "top 20%",
+//                 end: "center 30%",
+//                 scrub: true,
+//                 // markers: true
+//             }
+//         });
+//     }
+//     gsap.to(item.querySelector(".img_wrapper"), {
+//         borderRadius: 0,
+//         scrollTrigger: {
+//             trigger: document.querySelector(".community_section"),
+//             start: "top 20%",
+//             end: "center 30%",
+//             scrub: true,
+//             // markers: true
+//         }
+//     });
+// });
 
-const community = document.querySelector(".community_section .items .content_wrapper");
-gsap.to(community, {
-    x: () => -(community.scrollWidth - window.innerWidth),
-    scrollTrigger: {
-        trigger: community,
-        start: "top top",
-        scrub: true,
-        pin: true,
-        pinSpacer: false,
-        end: () => `+=${community.scrollWidth - window.innerWidth}`,
-        // markers: true
-    }
-});
+// const community = document.querySelector(".community_section .items .content_wrapper");
+// gsap.to(community, {
+//     x: () => -(community.scrollWidth - window.innerWidth),
+//     scrollTrigger: {
+//         trigger: community,
+//         start: "top top",
+//         scrub: true,
+//         pin: true,
+//         pinSpacer: false,
+//         end: () => `+=${community.scrollWidth - window.innerWidth}`,
+//         // markers: true
+//     }
+// });
 
 
 // Projects Line Up section
+
+
 const projectLineImages = document.querySelectorAll(".projects_section .images_wrapper .hstack");
 projectLineImages.forEach(line => {
     const images = line.querySelectorAll(".img_wrapper");
@@ -616,49 +646,49 @@ projectSelector.forEach((project, idx) => {
 
 setPosition(projectSelector[0]);
 
-document.querySelectorAll("section.bg_bright")?.forEach(section => {
-    gsap.to(".header", {
-        scrollTrigger: {
-            trigger: section,
-            start: "top top",
-            end: "bottom top",
-            toggleClass: {
-                targets: ".header",
-                className: "dark",
-            },
-        }
-    });
-});
+// document.querySelectorAll("section.bg_bright")?.forEach(section => {
+//     gsap.to(".header", {
+//         scrollTrigger: {
+//             trigger: section,
+//             start: "top top",
+//             end: "bottom top",
+//             toggleClass: {
+//                 targets: ".header",
+//                 className: "dark",
+//             },
+//         }
+//     });
+// });
 
 // window.addEventListener("resize", gsap.update);
 
-// let isScrolling = false;
-// let scrollingTimeout;
+let isScrolling = false;
+let scrollingTimeout;
 
-// window.addEventListener("wheel", evt => {
-//     const header = document.querySelector(".header");
-//     header.classList.add("hide");
-//     // if (evt.deltaY > 0) {        
-//     // }
-//     // if (evt.deltaY < 0) {        
-//     //     header.classList.remove("hide");
-//     // }
-//     if (!isScrolling) {
-//         isScrolling = true;
-//     }
+window.addEventListener("wheel", evt => {
+    const header = document.querySelector(".header");
+    header.classList.add("hide");
+    // if (evt.deltaY > 0) {        
+    // }
+    // if (evt.deltaY < 0) {        
+    //     header.classList.remove("hide");
+    // }
+    if (!isScrolling) {
+        isScrolling = true;
+    }
 
-//     clearTimeout(scrollingTimeout);
+    clearTimeout(scrollingTimeout);
 
-//     scrollingTimeout = setTimeout(handleScrollStop, 450);
-// });
+    scrollingTimeout = setTimeout(handleScrollStop, 450);
+});
 
 
 // // Function to handle the scroll stop event
-// function handleScrollStop() {
-//     isScrolling = false;
-//     const header = document.querySelector(".header");
-//     header.classList.remove("hide");
-// }
+function handleScrollStop() {
+    isScrolling = false;
+    const header = document.querySelector(".header");
+    header.classList.remove("hide");
+}
 
 
 
@@ -674,3 +704,5 @@ document.querySelectorAll("section.bg_bright")?.forEach(section => {
 
 
 // // ScrollTrigger.refresh();
+
+

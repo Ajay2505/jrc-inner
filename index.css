@@ -9,11 +9,13 @@
 }
 
 :root {
-    --bg_main: #5e6563;
+    /* --bg_main: #5e6563; */
+    --bg_main: #fff;
     /* --bg-sec: #C89A36; */
     --bg-sec: #e9f0ee;
     --bg-ter: #C89A36;
-    --main_color: #E8E8D7;
+    /* --main_color: #E8E8D7; */
+    --main_color: #333333;
     --montserrat: "Montserrat", sans-serif;
     --newyorkFont: "NewYork", sans-serif;
 }
@@ -47,11 +49,6 @@ html.lenis {
     color: var(--bg_main);
 }
 
-.bg_bright *::selection {
-    background-color: #333333;
-    color: var(--main_color);
-}
-
 body {
     color: #333333;
     font-family: var(--montserrat);
@@ -78,6 +75,18 @@ a {
 img {
     width: 100%;
     vertical-align: middle;
+}
+
+/* Target the specific number input and hide the spin buttons */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* For Firefox, you may need this additional CSS rule */
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 .w-screen {
@@ -186,12 +195,95 @@ img {
 }
 
 /* Main */
+
+.enquire_modal {
+    inset: 0;
+    z-index: 11;
+    transform: translateY(-120%);
+    transition: transform 0s .3s, background-color .2s ease-in-out;
+}
+
+.enquire_modal.active {
+    background-color: rgba(0, 0, 0, 0.40);
+    transform: translateY(0);
+    transition: transform 0s, background-color .2s ease-in-out;
+}
+
+.enquire_modal .modal_content {
+    color: #333333;
+    border-radius: 14px;
+    background-color: var(--bg_main);
+    transform: translateY(-70px);
+    opacity: 0;
+    transition: transform .3s ease-in-out, opacity .3s ease-in-out;
+}
+
+.enquire_modal.active .modal_content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.enquire_modal .modal_content form input {
+    outline: none;
+    padding: 8px 6px;
+    border-radius: 8px;
+    border: 1px solid #5e656343;
+    transition: border .1s ease-in-out;
+}
+
+.enquire_modal .modal_content form input:hover {
+    border: 1px solid #5e656366;
+}
+
+.enquire_modal .modal_content form input:focus {
+    border: 1px solid #5e656399;
+}
+
+.enquire_modal .modal_content form button {
+    outline: none;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 7px 20px;
+    border: 1px solid #5e656355;
+}
+
+.enquire_modal .modal_content form button:hover {
+    border: 1px solid #5e656399;
+}
+
+.fixed_contact {
+    right: -100px;
+    top: 40%;
+    z-index: 12;
+    transform: rotate(-90deg);
+}
+
+.fixed_contact a {
+    color: #fff;
+    text-transform: uppercase;
+    padding: 7px 20px;
+    background-color: var(--main_color);
+}
+
+.chat_box {
+    position: fixed;
+    right: 10px;
+    bottom: 30px;
+    z-index: 12;
+    max-width: 70px;
+    transition: transform .2s ease-in-out;
+}
+
+.chat_box:hover {
+    transform: scale(1.1);
+}
+
 .header {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 100;
+    z-index: 10;
     padding-top: 30px;
     transform-origin: top;
     /* background-color: var(--bg_main); */
@@ -280,11 +372,15 @@ img {
 }
 
 .main_section .main_heading {
-    color: #E8E8D7;
+    /* color: #E8E8D7; */
+    /* color: #C89A36; */
+    /* color: #771714; */
+    color: #000;
     width: fit-content;
     position: absolute;
     bottom: -100px;
     left: 10%;
+    mix-blend-mode: difference;
     line-height: .9;
 }
 
@@ -354,45 +450,6 @@ section.about_section {
     position: relative;
 }
 
-.key_list_section .underLine::before {
-    background: rgba(81,85,81,0.45);
-}
-
-.key_list_section .content_wrapper .linesDiv {
-    padding: 60px 30px 60px 30px;
-}
-
-.key_list_section .content_wrapper .linesDiv::before {
-    background: rgba(81,85,81,0.1);   
-}
-
-.key_list_section .content_wrapper .linesDiv::after {
-    background: rgba(81,85,81,0.45);   
-}
-
-.key_list_section .linesDiv a::before {
-    background: rgba(255,255,255,0.75);
-    transition: clip-path 0.25s ease-in 0s;
-}
-
-.key_list_section .linesDiv .img_wrapper {
-    max-width: 150px;
-    min-width: 150px;
-    border-radius: 60px;
-    overflow: hidden;
-    transition: border-radius .45s ease-in-out;
-}
-
-.key_list_section .linesDiv:hover .img_wrapper {
-    border-radius: 7px;
-}
-
-.key_list_section .linesDiv .icon_wrapper {
-    width: 40px;
-    height: 40px;
-    border: 1px solid #333333;
-}
-
 .underLine::before {
     content: "";
     position: absolute;
@@ -413,12 +470,14 @@ section.about_section {
     z-index: 2;
     height: 2px;
     right: 0;
-    background: rgba(232, 232, 215, 0.15);
+    background-color: #333333;
+    opacity: .15;
 }
 
 .linesDiv::after {
     width: 0px;
-    background: rgba(232, 232, 215, 0.35);
+    background-color: #333333;
+    opacity: .35;
     transition: width .5s ease-in-out;
 }
 
@@ -433,9 +492,13 @@ section.about_section {
     top: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.15);
+    background: rgba(0, 0, 0, 0.05);
     clip-path: inset(100% 0 0 0);
     transition: clip-path 0.35s ease-in 0s;
+}
+
+.linesDiv a {
+    transition: padding-left .2s ease-in-out;
 }
 
 .linesDiv:hover a {
@@ -663,13 +726,53 @@ section.about_section {
     transition: opacity .3s ease-in-out, transform .4s ease-in-out;
 }
 
+
+.key_list_section .underLine::before {
+    background: rgba(81,85,81,0.45);
+}
+
+.key_list_section .content_wrapper .linesDiv {
+    padding: 60px 30px 60px 30px;
+}
+
+.key_list_section .content_wrapper .linesDiv::before {
+    background: rgba(81,85,81,0.1);   
+}
+
+.key_list_section .content_wrapper .linesDiv::after {
+    background: rgba(81,85,81,0.45);   
+}
+
+.key_list_section .linesDiv a::before {
+    background: rgba(255,255,255,0.75);
+    transition: clip-path 0.25s ease-in 0s;
+}
+
+.key_list_section .linesDiv .img_wrapper {
+    max-width: 150px;
+    min-width: 150px;
+    border-radius: 60px;
+    overflow: hidden;
+    transition: border-radius .45s ease-in-out;
+}
+
+.key_list_section .linesDiv:hover .img_wrapper {
+    border-radius: 7px;
+}
+
+.key_list_section .linesDiv .icon_wrapper {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #333333;
+}
+
 .bg_img_itself {
     display: none;
     position: fixed;
     inset: 0;
     background-repeat: no-repeat;
     filter: blur(20px);
-    background: rgba(0, 0, 0, 0.65);
+    /* background: rgba(0, 0, 0, 0.65); */
     background-blend-mode: overlay;
     pointer-events: none;
     background-size: cover;
@@ -677,13 +780,25 @@ section.about_section {
     height: 100%;
 }
 
-.bg_img_section, .projects_section{
+/* .bg_img_section, .projects_section{
     color: var(--main_color);
     background-color: #323332;
+} */
+
+.bg_img_section .linesDiv {
+    transition: color .2s ease-in-out;
 }
 
 .bg_img_section .linesDiv:hover a {
     padding-left: 0;
+}
+
+.bg_img_itself .right_wrapper .linesDiv:hover .icon_wrapper {
+    border: 1px solid #fff;
+}
+
+.bg_img_section .linesDiv:hover {
+    color: #fff;
 }
 
 .bg_img_section .linesDiv a::before {

@@ -223,7 +223,7 @@ input[type="number"] {
     transform: translateY(0);
 }
 
-.enquire_modal .modal_content form input {
+.enquire_form form input {
     outline: none;
     padding: 8px 6px;
     border-radius: 8px;
@@ -231,15 +231,15 @@ input[type="number"] {
     transition: border .1s ease-in-out;
 }
 
-.enquire_modal .modal_content form input:hover {
+.enquire_form form input:hover {
     border: 1px solid #5e656366;
 }
 
-.enquire_modal .modal_content form input:focus {
+.enquire_form form input:focus {
     border: 1px solid #5e656399;
 }
 
-.enquire_modal .modal_content form button {
+.enquire_form form button {
     outline: none;
     background-color: #fff;
     border-radius: 8px;
@@ -247,7 +247,7 @@ input[type="number"] {
     border: 1px solid #5e656355;
 }
 
-.enquire_modal .modal_content form button:hover {
+.enquire_form form button:hover {
     border: 1px solid #5e656399;
 }
 

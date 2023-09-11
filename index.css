@@ -288,6 +288,7 @@ input[type="number"] {
     transform-origin: top;
     /* background-color: var(--bg_main); */
     transition: opacity .2s ease-in-out, transform .2s ease-in-out;
+    backdrop-filter: blur(2px);
 }
 
 .header.hide {

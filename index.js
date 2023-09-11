@@ -687,7 +687,7 @@ window.addEventListener("wheel", evt => {
 
     clearTimeout(scrollingTimeout);
 
-    scrollingTimeout = setTimeout(handleScrollStop, 450);
+    scrollingTimeout = setTimeout(handleScrollStop, 100);
 });
 
 
